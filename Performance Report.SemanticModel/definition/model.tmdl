@@ -1,0 +1,27 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Dim_Account","Fact_Sales","Dim_Product","Slc_Values"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.144.1378.0 (25.06)+cba1e61f16ea36d44901f06fa446299040122394
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Dim_Account
+ref table DateTableTemplate_84ff05b3-8288-4e5f-9c4f-b152bbbb6bc0
+ref table Fact_Sales
+ref table Dim_Product
+ref table Dim_Date
+ref table LocalDateTable_15f7fb27-fda2-4638-929e-f56b09aae151
+ref table Slc_Values
+ref table _Measures
+
+ref cultureInfo en-US
+
