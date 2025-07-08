@@ -138,6 +138,12 @@ table _Measures
 	measure '_Report title' = "Plant Co. " & SELECTEDVALUE(Slc_Values[Values]) & " Performance " & SELECTEDVALUE(Dim_Date[Date].[Year])
 		lineageTag: 7d6410d6-57fe-4e24-b317-dce08cf50d5f
 
+	measure TestYTD_GrossProfitTest = TOTALYTD([Gross Profit],Fact_Sales[Date_Time])
+		displayFolder: YTD
+		lineageTag: 3aa66a05-3b51-4d60-8cda-374d0bc90875
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column Column
 		isHidden
 		formatString: 0
