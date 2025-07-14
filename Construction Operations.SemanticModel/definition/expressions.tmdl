@@ -1,0 +1,38 @@
+expression Construction =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\Yenu5\Downloads\sample construction data.xlsx"), null, true),
+		    Construction_Sheet = Source{[Item="Construction",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Construction_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Column1", type text}, {"Column2", type text}, {"Deliverables", type text}, {"Column4", type text}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}}),
+		    #"Removed Top Rows" = Table.Skip(#"Changed Type",1),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"Location", type text}, {"Building reference", type text}, {"Design", type text}, {"Acceptance", type text}, {"Sand Expected", Int64.Type}, {"Sand Delivered", Int64.Type}, {"Gravel Expected", Int64.Type}, {"Gravel Delivered", Int64.Type}, {"Planned start date", type date}, {"Actual start date", type any}, {"Staff ready", type text}, {"Planned inspection", type date}}),
+		    #"Replaced Value" = Table.ReplaceValue(#"Changed Type1","Delayed","",Replacer.ReplaceValue,{"Actual start date"}),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Replaced Value",{{"Actual start date", type date}}),
+		    #"Merged Queries" = Table.NestedJoin(#"Changed Type2", {"Building reference"}, Customer, {"Building reference"}, "Customer", JoinKind.LeftOuter),
+		    #"Expanded Customer" = Table.ExpandTableColumn(#"Merged Queries", "Customer", {"CustomerID"}, {"CustomerID"})
+		in
+		    #"Expanded Customer"
+	lineageTag: 6dd97a7f-f7c5-4dcf-a745-2354d5d3725c
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Customer =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\Yenu5\Downloads\sample construction data.xlsx"), null, true),
+		    Customer_Sheet = Source{[Item="Customer",Kind="Sheet"]}[Data],
+		    #"Changed Type" = Table.TransformColumnTypes(Customer_Sheet,{{"Column1", type text}, {"Column2", type text}}),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Building reference", type text}, {"Customer", type text}}),
+		    #"Merged Queries" = Table.NestedJoin(#"Changed Type1", {"Customer"}, Customers, {"Customer"}, "Customer (2)", JoinKind.LeftOuter),
+		    #"Expanded Customer (2)" = Table.ExpandTableColumn(#"Merged Queries", "Customer (2)", {"CustomerID"}, {"CustomerID"})
+		in
+		    #"Expanded Customer (2)"
+	lineageTag: c561866d-de3e-44a4-80ad-a3e4a77e1233
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,36 @@
+table Location
+	lineageTag: 817f50c9-34db-4952-9a07-526184c728f5
+
+	column Location
+		dataType: string
+		lineageTag: 36cfae59-69d3-4d8a-a6bd-1e6e5633e892
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationID
+		dataType: int64
+		formatString: 0
+		lineageTag: 0ff8f42e-9670-420b-b9d3-7544222cd480
+		summarizeBy: none
+		sourceColumn: LocationID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Location = m
+		mode: import
+		source =
+				let
+				    Source = Construction,
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Location"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns"),
+				    #"Added Index" = Table.AddIndexColumn(#"Removed Duplicates", "Index", 100, 1, Int64.Type),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Index",{{"Index", "LocationID"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,40 @@
+table Customers
+	lineageTag: 5581b535-4e30-47ed-bf38-e2f3fbbfea9b
+
+	column Customer
+		dataType: string
+		lineageTag: ab3f5e89-4551-4721-9baa-f8b0df62ac16
+		summarizeBy: none
+		sourceColumn: Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerID
+		dataType: int64
+		formatString: 0
+		lineageTag: 7a2d7f46-9263-4f44-8720-5fd3ad133cc6
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customers = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Yenu5\Downloads\sample construction data.xlsx"), null, true),
+				    Customer_Sheet = Source{[Item="Customer",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Customer_Sheet,{{"Column1", type text}, {"Column2", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Building reference", type text}, {"Customer", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"Building reference"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns"),
+				    #"Added Index" = Table.AddIndexColumn(#"Removed Duplicates", "Index", 300, 23, Int64.Type),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Index",{{"Index", "CustomerID"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

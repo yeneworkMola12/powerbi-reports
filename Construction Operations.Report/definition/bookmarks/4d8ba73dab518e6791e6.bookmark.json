@@ -1,0 +1,284 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Material",
+  "name": "4d8ba73dab518e6791e6",
+  "options": {
+    "targetVisualNames": []
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "042fd9e9b6b91b05ebcb",
+    "sections": {
+      "042fd9e9b6b91b05ebcb": {
+        "visualContainers": {
+          "ad9b71eaea1d1067705e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "44eb6c52db6dcdf424b7",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Location"
+                        }
+                      },
+                      "Property": "Location"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a933cf4fe822790f3029",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Building"
+                        }
+                      },
+                      "Property": "Building reference"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7059ba3fb9c69723f3bb",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Total Sand Expected"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "893d6978e2106d8bfb1b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Total Sand Delivered"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4f122bafc5c8da3d85e7",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Total Gravel Expected"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "220b565f6c5aea70010a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Total Gravel Delivered"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5ed6ffd5a7f32c3d6f29",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Gravel Delivered %"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "586c4a0a3ab843cd854e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Sand Delivered %"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "pivotTable",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Building"
+                        }
+                      },
+                      "Property": "Building reference"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Location"
+                        }
+                      },
+                      "Property": "Location"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Building"
+                        }
+                      },
+                      "Property": "Building reference"
+                    }
+                  }
+                ]
+              },
+              "expansionStates": [
+                {
+                  "roles": [
+                    "Rows"
+                  ],
+                  "levels": [
+                    {
+                      "queryRefs": [
+                        "Location.Location"
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "Building.Building reference"
+                      ],
+                      "isCollapsed": true,
+                      "isPinned": true
+                    }
+                  ],
+                  "root": {
+                    "identityValues": null
+                  }
+                }
+              ]
+            }
+          },
+          "152452ce27ae813287ce": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "2bd9b5066ed3259c9e65",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Gravel Delivered %"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c227cff085501f18080d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Sand Delivered %"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Sand Delivered %"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

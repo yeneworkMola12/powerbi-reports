@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBIDesktopVersion = 2.144.1378.0 (25.06)+cba1e61f16ea36d44901f06fa446299040122394
+
+annotation PBI_QueryOrder = ["Construction","Customer","Location","Building","Design","StaffReady","Customers","ConstructionFact","AllMeasures","SortTable"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Location
+ref table Building
+ref table Design
+ref table StaffReady
+ref table Customers
+ref table ConstructionFact
+ref table AllMeasures
+ref table DateTable
+ref table SortTable
+ref table MeasuresDictonary
+
+ref cultureInfo en-US
+

@@ -1,0 +1,34 @@
+table SortTable
+	lineageTag: 7907a5ad-23b2-43b8-9d90-67fea9556b21
+
+	column Days
+		dataType: string
+		lineageTag: 48b78950-bdf7-43ba-a397-b93399327e87
+		summarizeBy: none
+		sourceColumn: Days
+		sortByColumn: Sort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort
+		dataType: int64
+		formatString: 0
+		lineageTag: c4ecd4e8-578f-4e0e-bb9c-573baaf2113f
+		summarizeBy: none
+		sourceColumn: Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SortTable = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlDQcEwrSS1S8MwrLkhNLsnMz1PSUTJUitUByukaWSqkJFYWA0WMwCLGBrpmBjAhY7BQTKmBgXEqQtQELBqal52XXw4yylQpNhYA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Days = _t, Sort = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Days", type text}, {"Sort", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

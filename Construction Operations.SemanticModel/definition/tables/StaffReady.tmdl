@@ -1,0 +1,39 @@
+table StaffReady
+	lineageTag: 0b5d15d8-283b-4d2b-b868-e42e36700767
+
+	column 'Staff ready'
+		dataType: string
+		lineageTag: 3061baa0-8aa9-40f2-aa12-4e5fd8560873
+		summarizeBy: none
+		sourceColumn: Staff ready
+		sortByColumn: StaffreadyID
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column StaffreadyID
+		dataType: int64
+		formatString: 0
+		lineageTag: 52ee0b35-9670-4fca-a341-22e30edb94ae
+		summarizeBy: none
+		sourceColumn: StaffreadyID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition StaffReady = m
+		mode: import
+		source =
+				let
+				    Source = Construction,
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Staff ready"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns"),
+				    #"Added Index" = Table.AddIndexColumn(#"Removed Duplicates", "Index", 0, 1, Int64.Type),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Index",{{"Index", "StaffreadyID"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,709 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Readiness Trends",
+  "name": "0b05d52000dab0004022",
+  "options": {
+    "targetVisualNames": [
+      "6a6b6516d102b5a08be0"
+    ]
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "35a1e06fd84132040709",
+    "sections": {
+      "35a1e06fd84132040709": {
+        "visualContainers": {
+          "ba500cc7286b415e42e2": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "f747670823756e209859": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "3953ccf59b856f889849",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ConstructionFact"
+                        }
+                      },
+                      "Property": "Project Start Status"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ConstructionFact"
+                        }
+                      },
+                      "Property": "Project Start Status"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "2b30d0d08460497d74e9": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "2387323209d17fd3e8a9",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Location"
+                        }
+                      },
+                      "Property": "Location"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Location"
+                        }
+                      },
+                      "Property": "Location"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "6e8801df02c2b7d67ea0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "3959677f3643cdcccb02",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Customers"
+                        }
+                      },
+                      "Property": "Customer"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Customers"
+                        }
+                      },
+                      "Property": "Customer"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "d786b244a2905d076878": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "20fd9546c01f61b35781",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Design"
+                        }
+                      },
+                      "Property": "Acceptance"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Design"
+                        }
+                      },
+                      "Property": "Acceptance"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "26306d103e1c0662d596": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "2e65edf73d938388b970",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "StaffReady"
+                        }
+                      },
+                      "Property": "Staff ready"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "StaffReady"
+                        }
+                      },
+                      "Property": "Staff ready"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "ebd954f57b554538478c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "db6475e8565ea46fc8d7",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Design"
+                        }
+                      },
+                      "Property": "Design"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Design"
+                        }
+                      },
+                      "Property": "Design"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "b725fd343a534550ebc2": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4cc441ee3147dd3abc39",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ConstructionFact"
+                        }
+                      },
+                      "Property": "DateLabel"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ConstructionFact"
+                        }
+                      },
+                      "Property": "DateLabel"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "6f5110700acbb0741460": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1247357cc96aa0141bdb",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Design Complete %"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0318dee137bc600e4d8b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Acceptance Yes %"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "fa02815c64a17cef724d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Staff Ready  %"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a902180d5e26397ef919",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Gravel Delivered %"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ec5439f8385470f09107",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Sand Delivered %"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4024a211fe245e1cf52c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ConstructionFact"
+                        }
+                      },
+                      "Property": "DateLabel"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "areaChart",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ConstructionFact"
+                        }
+                      },
+                      "Property": "DateLabel"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "6a6b6516d102b5a08be0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "8090903410e08a09d9b5",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Location"
+                        }
+                      },
+                      "Property": "Location"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e03b857d211e138e3b03",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Building"
+                        }
+                      },
+                      "Property": "Building reference"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f6a13cece63f0e288991",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Gravel Delivered %"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6ec548698a899dc5d2b5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Sand Delivered %"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7701cd7d949852257f6b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "SortTable"
+                        }
+                      },
+                      "Property": "Days"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "79a99a0bc5ff02c98fac",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Customers"
+                        }
+                      },
+                      "Property": "Customer"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "pivotTable",
+              "objects": {},
+              "activeProjections": {
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Location"
+                        }
+                      },
+                      "Property": "Location"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Customers"
+                        }
+                      },
+                      "Property": "Customer"
+                    }
+                  }
+                ],
+                "Columns": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "SortTable"
+                        }
+                      },
+                      "Property": "Days"
+                    }
+                  }
+                ]
+              },
+              "expansionStates": [
+                {
+                  "roles": [
+                    "Rows"
+                  ],
+                  "levels": [
+                    {
+                      "queryRefs": [
+                        "Location.Location"
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "Customers.Customer"
+                      ],
+                      "isCollapsed": true,
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "Building.Building reference"
+                      ],
+                      "isCollapsed": true
+                    }
+                  ],
+                  "root": {
+                    "identityValues": null
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+table Building
+	lineageTag: ef4c19e5-dc90-4fad-9d25-19cf1cdb1193
+
+	column 'Building reference'
+		dataType: string
+		lineageTag: 0c37a776-64bd-4102-8878-cd82c8c65bb4
+		summarizeBy: none
+		sourceColumn: Building reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column BuildingID
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d582edd-9b34-4ade-ab65-5356abb250a2
+		summarizeBy: none
+		sourceColumn: BuildingID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationID
+		dataType: int64
+		formatString: 0
+		lineageTag: 30ea7119-587d-4a01-8756-fa7d5da7f976
+		summarizeBy: none
+		sourceColumn: LocationID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Building = m
+		mode: import
+		source =
+				let
+				    Source = Construction,
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Location", "Building reference"}),
+				    #"Added Index" = Table.AddIndexColumn(#"Removed Other Columns", "Index", 200, 20, Int64.Type),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Index",{{"Index", "BuildingID"}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Renamed Columns", {"Location"}, Location, {"Location"}, "Location.1", JoinKind.LeftOuter),
+				    #"Expanded Location.1" = Table.ExpandTableColumn(#"Merged Queries", "Location.1", {"LocationID"}, {"LocationID"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Expanded Location.1",{"Location"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

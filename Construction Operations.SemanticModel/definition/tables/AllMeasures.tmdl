@@ -1,0 +1,199 @@
+table AllMeasures
+	lineageTag: 9ca209ad-55dd-4ffc-9d6f-0455934d757d
+
+	measure 'Total Sand Delivered' = ```
+			SUM(ConstructionFact[Sand Delivered])
+			
+			```
+		formatString: 0
+		lineageTag: 97436e0f-ddc3-42d6-b653-f336c0de0679
+
+	measure 'Total Gravel Delivered' = ```
+			SUM(ConstructionFact[Gravel Delivered])
+			
+			```
+		formatString: 0
+		lineageTag: 4a4600ce-5971-4c85-863b-ddbd25f53f31
+
+	measure 'Total Sand Expected' = ```
+			SUM(ConstructionFact[Sand Expected])
+			
+			```
+		formatString: 0
+		lineageTag: cfeff3c5-e48b-4356-973c-188c591b5216
+
+	measure 'Total Gravel Expected' = ```
+			SUM(ConstructionFact[Gravel Expected])
+			
+			```
+		formatString: 0
+		lineageTag: 2dd20341-45ab-42b2-9023-3d121372ec52
+
+	measure 'Sand Delivered %' = ```
+			
+			DIVIDE([Total Sand Delivered], [Total Sand Expected], 0)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 211ea722-9c5a-494f-9b43-130849f19f19
+
+	measure 'Gravel Delivered %' = ```
+			
+			DIVIDE([Total Gravel Delivered], [Total Gravel Expected], 0)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ca186d63-9812-4385-abdc-2b3042e25e3c
+
+	measure 'Projects Staff Ready' = ```
+			
+			CALCULATE(
+			    COUNT(ConstructionFact[StaffreadyID]),
+			    FILTER(
+			        ConstructionFact,
+			        RELATED(StaffReady[Staff ready]) = "Yes"
+			    )
+			)
+			
+			
+			```
+		formatString: 0
+		lineageTag: 480028a0-fb1b-4a2d-8024-236a31849126
+
+	measure 'Total Buildings' = Count(ConstructionFact[BuildingID])
+		formatString: 0
+		lineageTag: 8954af0d-a14f-4433-8548-7ae550ef94b7
+
+	measure 'Projects Early Start' = ```
+			
+			CALCULATE(
+			    COUNTROWS(ConstructionFact),
+			    ConstructionFact[Project Start Status] = "Early Start"
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 312471e1-a636-4ddd-9e03-e1f6efdbd5ec
+
+	measure 'Projects Delayed Start' = ```
+			
+			CALCULATE(
+			    COUNTROWS(ConstructionFact),
+			    ConstructionFact[Project Start Status] = "Delayed Start"
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 3e97aeef-36da-41a6-a824-3f53e65ce02c
+
+	measure 'Projects Unknown status' = ```
+			
+			CALCULATE(
+			    COUNTROWS(ConstructionFact),
+			    ConstructionFact[Project Start Status] = "Unknown"
+			)
+			
+			```
+		formatString: 0
+		lineageTag: baa4dac6-0d70-48c6-94aa-083160c65526
+
+	measure 'Projects within schedule (Ontime+Early)' = [Projects On Time Start]+ [Projects Early Start]
+		formatString: 0
+		lineageTag: 8856079a-05ef-4ca4-91b3-11a44eeeb53e
+
+	measure 'Start to Inspection Less Than 30 Days' = ```
+			
+			CALCULATE(
+			    [Total Buildings],
+			    FILTER(
+			        ConstructionFact,
+			        NOT(ISBLANK(ConstructionFact[Days From Start to Inspection])) &&
+			        ConstructionFact[Days From Start to Inspection] <= 30
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: f8585af0-f09a-4314-aa1d-f81b01f443f3
+
+	measure 'Acceptance Yes %' = ```
+			
+			DIVIDE(
+			    CALCULATE([Total Buildings], Design[Acceptance] = "Yes"),
+			    [Total Buildings],
+			    0
+			)
+			
+			```
+		formatString: 0%;-0%;0%
+		lineageTag: 386a5a26-0399-4f56-a4b9-34c98f0a1042
+
+	measure 'Design Complete %' = ```
+			
+			DIVIDE(
+			    CALCULATE([Total Buildings], Design[Design] = "Complete"),
+			    [Total Buildings],
+			    0
+			)
+			
+			```
+		formatString: 0%;-0%;0%
+		lineageTag: d2b77290-63fd-446d-9c9f-2ecc522006eb
+
+	measure 'Staff Ready  %' =
+			
+			DIVIDE(
+			    CALCULATE([Total Buildings], StaffReady[Staff ready] = "Yes"),
+			    [Total Buildings],
+			    0
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: 95afd88b-50f9-4a3d-b14b-929f92cac754
+
+	measure 'Projects On Time Start' =
+			
+			CALCULATE(
+			    COUNTROWS(ConstructionFact),
+			    ConstructionFact[Project Start Status] = "On Time Start"
+			)
+		formatString: 0
+		lineageTag: 50b576e8-c772-4123-8b7d-00e90c5b5a74
+
+	measure 'Acceptance Yes % (Latest Month)' = ```
+			
+			VAR LatestMonth =
+			    CALCULATE(
+			        MAX('DateTable'[Month]),
+			        ALL('DateTable')
+			    )
+			RETURN
+			DIVIDE(
+			    CALCULATE(
+			        [Total Buildings],
+			        Design[Acceptance] = "Yes",
+			        'DateTable'[Month] = LatestMonth
+			    ),
+			    CALCULATE(
+			        [Total Buildings],
+			        'DateTable'[Month] = LatestMonth
+			    ),
+			    0
+			)
+			
+			```
+		lineageTag: 62e6ce58-e987-45e5-9bae-78d5e3542943
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition AllMeasures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

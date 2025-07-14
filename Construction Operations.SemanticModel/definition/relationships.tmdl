@@ -1,0 +1,40 @@
+relationship 0f507025-24ae-092c-eeb4-79525ad52ff8
+	fromColumn: ConstructionFact.DesignID
+	toColumn: Design.DesignID
+
+relationship 864447da-60aa-ee21-080c-ff78b8c83912
+	fromColumn: ConstructionFact.CustomerID
+	toColumn: Customers.CustomerID
+
+relationship e12ad0a9-16ec-28ee-e1c3-3de991707bc4
+	fromColumn: ConstructionFact.StaffreadyID
+	toColumn: StaffReady.StaffreadyID
+
+relationship 25bb9a67-e751-2cbd-ff67-5495ea3b49fe
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: ConstructionFact.BuildingID
+	toColumn: Building.BuildingID
+
+relationship 45c75d1d-8689-5859-d191-f5022e18603d
+	fromColumn: Building.LocationID
+	toColumn: Location.LocationID
+
+relationship f9c8bb54-6441-8877-4c77-e1b405831d83
+	fromColumn: ConstructionFact.'Actual start date'
+	toColumn: DateTable.Date
+
+relationship 27b2760b-d0ae-5ddf-0fed-76db5656dc69
+	isActive: false
+	fromColumn: ConstructionFact.'Planned start date'
+	toColumn: DateTable.Date
+
+relationship 323e3b84-4506-c9c9-705b-271f27acebd5
+	isActive: false
+	fromColumn: ConstructionFact.'Planned inspection'
+	toColumn: DateTable.Date
+
+relationship be0e54a7-7351-d923-6887-9912518887f8
+	fromColumn: ConstructionFact.InspectionDaysGroup
+	toColumn: SortTable.Days
+

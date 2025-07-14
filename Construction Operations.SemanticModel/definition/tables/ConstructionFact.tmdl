@@ -1,0 +1,236 @@
+table ConstructionFact
+	lineageTag: 62ba9139-75c0-42e2-850a-9400a6bbaa80
+
+	column 'Sand Expected'
+		dataType: int64
+		formatString: 0
+		lineageTag: e542b022-2a75-4eb1-8138-4d6602e545ea
+		summarizeBy: sum
+		sourceColumn: Sand Expected
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sand Delivered'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2aced8e3-df74-4f0d-aa64-cbdb73378363
+		summarizeBy: none
+		sourceColumn: Sand Delivered
+
+		annotation SummarizationSetBy = User
+
+	column 'Gravel Expected'
+		dataType: int64
+		formatString: 0
+		lineageTag: d2e84771-bb28-4b54-8c8e-b368010156a8
+		summarizeBy: sum
+		sourceColumn: Gravel Expected
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gravel Delivered'
+		dataType: int64
+		formatString: 0
+		lineageTag: 86c7abd7-3b02-4911-a8b7-bf05ceb4bff9
+		summarizeBy: sum
+		sourceColumn: Gravel Delivered
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planned start date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 9c9d5105-34a4-41b8-a86c-210488dc020d
+		summarizeBy: none
+		sourceColumn: Planned start date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Actual start date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: fd7770fb-6221-47a9-90ef-4a92a4c54066
+		summarizeBy: none
+		sourceColumn: Actual start date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Planned inspection'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: b8716fc7-e4a4-4cad-93e1-8f4734b59747
+		summarizeBy: none
+		sourceColumn: Planned inspection
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CustomerID
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d3e66c6-4323-4fa3-85b1-b48cfd0fe184
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationID
+		dataType: int64
+		formatString: 0
+		lineageTag: eaa5585b-9220-4f71-8c32-8e36f2e1807d
+		summarizeBy: count
+		sourceColumn: LocationID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BuildingID
+		dataType: int64
+		formatString: 0
+		lineageTag: 9362c495-4757-4296-81b1-5d1de681b6c5
+		summarizeBy: none
+		sourceColumn: BuildingID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DesignID
+		dataType: int64
+		formatString: 0
+		lineageTag: 18a8aa20-d8c7-4eab-9b22-665a3e2b93e2
+		summarizeBy: none
+		sourceColumn: DesignID
+
+		annotation SummarizationSetBy = Automatic
+
+	column StaffreadyID
+		dataType: int64
+		formatString: 0
+		lineageTag: ef7a744b-2fb1-4ccf-bd1b-bbee9dc9c388
+		summarizeBy: none
+		sourceColumn: StaffreadyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Start Status' = ```
+			
+			VAR PlannedDate = ConstructionFact[Planned start date]
+			VAR ActualDate  = ConstructionFact[Actual start date]
+			RETURN
+			    IF(
+			        ISBLANK(PlannedDate) || ISBLANK(ActualDate),
+			        "Unknown",
+			        SWITCH(
+			            TRUE(),
+			            DATEDIFF(PlannedDate, ActualDate, DAY) < 0, "Early Start",
+			            DATEDIFF(PlannedDate, ActualDate, DAY) = 0, "On Time Start",
+			            DATEDIFF(PlannedDate, ActualDate, DAY) > 0, "Delayed Start",
+			            "Unknown"
+			        )
+			    )
+			
+			```
+		lineageTag: 058a7463-f5f2-4d20-b082-d951a14da143
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days From Start to Inspection' = ```
+			
+			VAR PlannedInspection = ConstructionFact[Planned inspection]
+			VAR ActualDate = ConstructionFact[Actual start date]
+			RETURN
+			    IF(
+			        ISBLANK(PlannedInspection) || ISBLANK(ActualDate),
+			        BLANK(),
+			        DATEDIFF(ActualDate, PlannedInspection, DAY)
+			    )
+			     
+			    
+			```
+		formatString: 0
+		lineageTag: 8aa2b193-98d5-4180-a4e8-f6bdc2cfb315
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column InspectionDaysGroup = ```
+			
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(ConstructionFact[Days From Start to Inspection]), "Unknown",
+			    ConstructionFact[Days From Start to Inspection] < 0, "<0 (After Inspection)",
+			    ConstructionFact[Days From Start to Inspection] <= 29, "0-29 days",
+			    ConstructionFact[Days From Start to Inspection] <= 60, "30-60 days",
+			    ">60 days"
+			)
+			
+			
+			```
+		lineageTag: 0648c925-abb5-4fb7-889c-6ef09e37b0b9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateLabel = ```
+			
+			IF(
+			    ISBLANK([Actual Start Date]),
+			    "Unknown Actual Start Date",
+			    FORMAT([Actual Start Date], "MMM yyyy")
+			)
+			
+			```
+		lineageTag: dcd11a72-c8c7-44ed-b127-5373d0af1241
+		summarizeBy: none
+		sortByColumn: SortingMonthNumber
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column SortingMonthNumber = ```
+			RELATED(DateTable[MonthNumber])
+			
+			```
+		formatString: 0
+		lineageTag: 4ec37e38-8346-4cc1-aa1d-d0bebbbaef57
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ConstructionFact = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Yenu5\Downloads\sample construction data.xlsx"), null, true),
+				    Construction_Sheet = Source{[Item="Construction",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Construction_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Column1", type text}, {"Column2", type text}, {"Deliverables", type text}, {"Column4", type text}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}}),
+				    #"Removed Top Rows" = Table.Skip(#"Changed Type",1),
+				    #"Promoted Headers1" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"Location", type text}, {"Building reference", type text}, {"Design", type text}, {"Acceptance", type text}, {"Sand Expected", Int64.Type}, {"Sand Delivered", Int64.Type}, {"Gravel Expected", Int64.Type}, {"Gravel Delivered", Int64.Type}, {"Planned start date", type date}, {"Actual start date", type any}, {"Staff ready", type text}, {"Planned inspection", type date}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type1","Delayed","",Replacer.ReplaceValue,{"Actual start date"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Replaced Value",{{"Actual start date", type date}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Changed Type2", {"Building reference"}, Customer, {"Building reference"}, "Customer", JoinKind.LeftOuter),
+				    #"Expanded Customer" = Table.ExpandTableColumn(#"Merged Queries", "Customer", {"CustomerID"}, {"CustomerID"}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Expanded Customer", {"Location"}, Location, {"Location"}, "Location.1", JoinKind.LeftOuter),
+				    #"Expanded Location.1" = Table.ExpandTableColumn(#"Merged Queries1", "Location.1", {"LocationID"}, {"LocationID"}),
+				    #"Merged Queries2" = Table.NestedJoin(#"Expanded Location.1", {"Building reference"}, Building, {"Building reference"}, "Building", JoinKind.LeftOuter),
+				    #"Expanded Building" = Table.ExpandTableColumn(#"Merged Queries2", "Building", {"BuildingID"}, {"BuildingID"}),
+				    #"Merged Queries3" = Table.NestedJoin(#"Expanded Building", {"Design", "Acceptance"}, Design, {"Design", "Acceptance"}, "Design.1", JoinKind.LeftOuter),
+				    #"Expanded Design.1" = Table.ExpandTableColumn(#"Merged Queries3", "Design.1", {"DesignID"}, {"DesignID"}),
+				    #"Merged Queries4" = Table.NestedJoin(#"Expanded Design.1", {"Staff ready"}, StaffReady, {"Staff ready"}, "StaffReady", JoinKind.LeftOuter),
+				    #"Merged Queries5" = Table.NestedJoin(#"Merged Queries4", {"Staff ready"}, StaffReady, {"Staff ready"}, "StaffReady.1", JoinKind.LeftOuter),
+				    #"Expanded StaffReady.1" = Table.ExpandTableColumn(#"Merged Queries5", "StaffReady.1", {"StaffreadyID"}, {"StaffreadyID"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Expanded StaffReady.1",{"StaffReady", "Location", "Building reference", "Design", "Acceptance", "Staff ready"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

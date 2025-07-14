@@ -1,0 +1,489 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Schedule Status",
+  "name": "81b4cb555dc3383493dc",
+  "options": {
+    "targetVisualNames": []
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "a2f35c13ed05cecc4671",
+    "sections": {
+      "a2f35c13ed05cecc4671": {
+        "visualContainers": {
+          "ec6bc29497a4694ce716": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "8cf597a7587fcecd9e1e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Projects Delayed Start"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0eced1dccd0abc0077e7",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Projects Unknown status"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f7f27b30a5237ac678ff",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Projects within schedule (Ontime+Early)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "donutChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Projects within schedule (Ontime+Early)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "264809315eab01a2e200": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "5af467b9c0c16114b12e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Customers"
+                        }
+                      },
+                      "Property": "Customer"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "dd73ba995a9b9b489c6a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Location"
+                        }
+                      },
+                      "Property": "Location"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ee31c0025478a124b8d6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Projects Delayed Start"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "03bca879e4808f391a82",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Projects Unknown status"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a627438c575a856e3ba8",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Projects within schedule (Ontime+Early)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "barChart",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Customers"
+                        }
+                      },
+                      "Property": "Customer"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "be36bb2a6042a4425b60": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "c9e34cb6c67127c91e33",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Location"
+                        }
+                      },
+                      "Property": "Location"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ecd3038d0f444a87fc7e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Building"
+                        }
+                      },
+                      "Property": "Building reference"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f92f6fe964996753bde0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "ConstructionFact"
+                            }
+                          },
+                          "Property": "Project Start Status"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2bcce3b7a73e0bbf490b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ConstructionFact"
+                        }
+                      },
+                      "Property": "Days From Start to Inspection"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "pivotTable",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ConstructionFact"
+                        }
+                      },
+                      "Property": "Days From Start to Inspection"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Location"
+                        }
+                      },
+                      "Property": "Location"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Building"
+                        }
+                      },
+                      "Property": "Building reference"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ConstructionFact"
+                        }
+                      },
+                      "Property": "Days From Start to Inspection"
+                    }
+                  }
+                ]
+              },
+              "expansionStates": [
+                {
+                  "roles": [
+                    "Rows"
+                  ],
+                  "levels": [
+                    {
+                      "queryRefs": [
+                        "Location.Location"
+                      ],
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "Location"
+                              }
+                            },
+                            "Property": "Location"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "Building.Building reference"
+                      ],
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "Building"
+                              }
+                            },
+                            "Property": "Building reference"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "ConstructionFact.Days From Start to Inspection"
+                      ],
+                      "isCollapsed": true,
+                      "isPinned": true
+                    }
+                  ],
+                  "root": {
+                    "identityValues": null
+                  }
+                }
+              ]
+            }
+          },
+          "650c5bebace0bdbde40d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "736748996415644af42c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Projects Delayed Start"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "35cb44a06b252dd5a26b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Projects Unknown status"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ff8ca08c4782be0cf550",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Projects Early Start"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ca5ee709f185b6172500",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Total Buildings"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e06aabb9476b41a27b32",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Projects On Time Start"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AllMeasures"
+                        }
+                      },
+                      "Property": "Total Buildings"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "f96926feec9ecd090841": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

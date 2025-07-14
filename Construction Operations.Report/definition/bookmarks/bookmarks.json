@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmarksMetadata/1.0.0/schema.json",
+  "items": [
+    {
+      "name": "ebdb9906cd7a63e5a143",
+      "displayName": "InfoBookmark",
+      "children": [
+        "fc238f2ec071368d4000",
+        "81b4cb555dc3383493dc",
+        "26509c1a8a64c002e416",
+        "4d8ba73dab518e6791e6",
+        "0b05d52000dab0004022",
+        "a09f14c270db420a320b"
+      ]
+    },
+    {
+      "name": "54a034f6b00a9a889010",
+      "displayName": "Expected VS Delivered",
+      "children": [
+        "4e6188d5ead901934552",
+        "8284e030bad5120c161b"
+      ]
+    }
+  ]
+}
